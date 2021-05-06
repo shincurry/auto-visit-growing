@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  auto-visit-growing:
+    container_name: auto-visit-growing
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      - TARGET_WALLET=
+    command: nodejs index.js
