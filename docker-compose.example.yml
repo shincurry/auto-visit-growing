@@ -1,11 +1,13 @@
 version: '3'
 
 services:
-  auto-visit-growing:
-    container_name: auto-visit-growing
+  auto-growing:
+    container_name: auto-growing
     build:
       context: .
       dockerfile: ./Dockerfile
     environment:
       - TARGET_WALLET=
+    volumes:
+      - ./data/user_data:/user_data
     command: nodejs index.js
