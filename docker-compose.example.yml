@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  auto-growing:
-    container_name: auto-growing
+  auto-visit-growing:
+    container_name: auto-visit-growing
     build:
       context: .
       dockerfile: ./Dockerfile

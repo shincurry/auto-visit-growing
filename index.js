@@ -8,7 +8,7 @@ const TARGET_WALLET = process.env.TARGET_WALLET;
 
 
 async function visitGrowingWebsite(browser) {
-	const page = await browser.newPage();
+  const page = await browser.newPage();
   await page.goto(`https://www.growing.fi/wallet/${TARGET_WALLET}`);
   console.log(`visited growing.fi for wallet [${TARGET_WALLET}] at ${new Date().toLocaleString()}`)
   setTimeout(() => {
@@ -22,12 +22,9 @@ async function run() {
     executablePath: process.env.CHROMIUM_PATH,
     args: ['--no-sandbox'],
   });
-  
-  visitGrowingWebsite(browser)
-  const job = schedule.scheduleJob('0 */10 * * * *', function() {
+  schedule.scheduleJob('0 */10 * * * *', function() {
     visitGrowingWebsite(browser)
   });
-
 }
 
 
