@@ -1,6 +1,5 @@
 const schedule = require('node-schedule');
 const puppeteer = require('puppeteer-core');
-const { PendingXHR } = require('pending-xhr-puppeteer');
 
 if (!process.env.TARGET_WALLET) {
 	throw new Error("please set TARGET_WALLET env.")
@@ -16,11 +15,20 @@ async function visitGrowingWebsite() {
     args: ['--no-sandbox'],
   });
   const page = await browser.newPage();
-  const pendingXHR = new PendingXHR(page);
+  // page.on('response', async (response) => {
+  //   if (response.url().includes("growingfi")){
+  //     console.log("response.status", response.status())
+  //     console.log("response.url", response.url())
+  //     if (response.status() == 200) {
+  //       console.log(await response.json())
+  //     }
+  //   }
+  // });
   await page.goto(`https://www.growing.fi/wallet/${TARGET_WALLET}`);
-  await pendingXHR.waitForAllXhrFinished()
-  console.log(`[${time.valueOf()}] done. ${new Date().toLocaleString('en-US', { timeZone: "Asia/Shanghai" })}`)
-  await browser.close();
+  setTimeout(() => {
+    console.log(`[${time.valueOf()}] done. ${new Date().toLocaleString('en-US', { timeZone: "Asia/Shanghai" })}`)
+    browser.close();
+  }, 10 * 1000)
 }
 
 schedule.scheduleJob('0 */10 * * * *', function() {
