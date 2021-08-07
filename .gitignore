@@ -1,6 +1,6 @@
 # App
 docker-compose.yml
-
+config.js
 
 # Logs
 logs

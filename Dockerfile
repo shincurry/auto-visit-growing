@@ -8,7 +8,8 @@ ENV CHROMIUM_PATH="/usr/bin/chromium-browser"
 
 WORKDIR /usr/src/app
 
-COPY . .
-COPY package*.json .
-
+COPY package*.json yarn.lock .
 RUN yarn
+
+COPY . .
+RUN yarn build

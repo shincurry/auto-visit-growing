@@ -6,8 +6,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    environment:
-      - TARGET_WALLET=
     volumes:
-      - ./data/user_data:/user_data
-    command: nodejs index.js
+      - ./data/user_data:/auto-visit-growing/user_data
+      - ./config.js:/usr/src/app/config.js
+    command: yarn start
